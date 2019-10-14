@@ -1,0 +1,312 @@
+## Voltage
+
+record(ao, "LNS-ISRC-010:PWRC-RepPS-01:VolS") {
+    field(DESC, "Set Voltage")
+    field(EGU,  "V")
+    field(HOPR, "0")
+    field(LOPR, "-3500")
+    field(FLNK, "LNS-ISRC-010:PWRC-RepPS-01:VolSCal")
+}
+
+record(calcout, "LNS-ISRC-010:PWRC-RepPS-01:VolSCal") {
+    field(DESC, "Set Voltage calc")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_voltage RepPS-01")
+    field(CALC, "A*(-1)")
+    field(INPA, "LNS-ISRC-010:PWRC-RepPS-01:VolS")
+}
+
+record(ai, "LNS-ISRC-010:PWRC-RepPS-01:VolRB") {
+    field(DESC, "Get Voltage")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_voltage RepPS-01")
+    field(LINR, "NO CONVERSION")
+    field(EGU,  "V")
+    field(HOPR, "0")
+    field(LOPR, "-3500")
+}
+
+record(ai, "LNS-ISRC-010:PWRC-RepPS-01:VolR") {
+    field(DESC, "Measure Voltage")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto measure_voltage RepPS-01")
+    field(PREC, "1")
+    field(LINR, "NO CONVERSION")
+    field(EGU,  "V")
+    field(HOPR, "0")
+    field(LOPR, "-3500")
+}
+
+## Current
+
+record(ao, "LNS-ISRC-010:PWRC-RepPS-01:CurS") {
+    field(DESC, "Set Current")
+    field(HOPR, "0")
+    field(LOPR, "-10")
+    field(PREC, "1")
+    field(EGU,  "mA")
+    field(FLNK, "LNS-ISRC-010:PWRC-RepPS-01:CurSCalc")
+}
+
+record(calcout, "LNS-ISRC-010:PWRC-RepPS-01:CurSCalc") {
+    field(DESC, "Set Current calc")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_current RepPS-01")
+    field(PREC, "0")
+    field(CALC, "A/(-1000)")
+    field(INPA, "LNS-ISRC-010:PWRC-RepPS-01:CurS")
+}
+
+record(ai, "LNS-ISRC-010:PWRC-RepPS-01:CurRB") {
+    field(DESC, "Get Current")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_current RepPS-01")
+    field(PREC, "0")
+    field(LINR, "NO CONVERSION")
+    field(EGU,  "mA")
+    field(HOPR, "0")
+    field(LOPR, "-10")
+}
+
+record(ai, "LNS-ISRC-010:PWRC-RepPS-01:CurRCalc") {
+    field(DESC, "Measure Current")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto measure_current RepPS-01")
+    field(LINR, "NO CONVERSION")
+    field(EGU,  "mA")
+    field(HOPR, "0")
+    field(LOPR, "-10")
+    field(FLNK, "LNS-ISRC-010:PWRC-RepPS-01:CurR")
+}
+
+record(calcout,"LNS-ISRC-010:PWRC-RepPS-01:CurR") {
+    field(INPA, "LNS-ISRC-010:PWRC-RepPS-01:CurRCalc")
+    field(CALC, "A*1000")
+    field(PREC, "3")
+    field(EGU,  "mA")
+}
+
+## Reset
+
+record(ao, "LNS-ISRC-010:PWRC-RepPS-01:Rst") {
+    field(DESC, "Reset")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto reset RepPS-01")
+}
+
+## Power Status
+
+record(bo, "LNS-ISRC-010:PWRC-RepPS-01:PwrS") {
+    field(DESC, "Power supply command")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_status RepPS-01")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "LNS-ISRC-010:PWRC-RepPS-01:PwrR") {
+    field(DESC, "Get power supply status")
+    field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_status RepPS-01")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+## Settings
+
+record(ao, "LNS-ISRC-010:PWRC-RepPS-01:RampTypeS") {
+    field(DESC, "Set Ramp")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_ramp RepPS-01")
+    field(PREC, "3")
+    field(LINR, "NO CONVERSION")
+    field(HOPR, "4")
+    field(LOPR, "0")
+}
+
+record(ao, "LNS-ISRC-010:PWRC-RepPS-01:RampS") {
+    field(DESC, "Set ramp value")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_ramp_value RepPS-01")
+    field(PREC, "3")
+    field(LINR, "NO CONVERSION")
+    field(HOPR, "0")
+    field(LOPR, "-0")
+}
+
+record(mbbiDirect, "LNS-ISRC-010:PWRC-RepPS-01:StatusR") {
+    field(DESC, "Get statusbytes")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_statusbytes RepPS-01")
+}
+
+record(bi, "LNS-ISRC-010:PWRC-RepPS-01:RampStatus") {
+    field(DESC, "Get ramp status")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_ramp_status RepPS-01")
+    field(ZNAM, "EQUAL")
+    field(ONAM, "NOT EQUAL")
+}
+## Voltage
+
+record(ao, "LNS-ISRC-010:PWRC-RepPS-02:VolS") {
+    field(DESC, "Set Voltage")
+    field(EGU,  "V")
+    field(HOPR, "0")
+    field(LOPR, "-3500")
+    field(FLNK, "LNS-ISRC-010:PWRC-RepPS-02:VolSCal")
+}
+
+record(calcout, "LNS-ISRC-010:PWRC-RepPS-02:VolSCal") {
+    field(DESC, "Set Voltage calc")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_voltage RepPS-02")
+    field(CALC, "A*(-1)")
+    field(INPA, "LNS-ISRC-010:PWRC-RepPS-02:VolS")
+}
+
+record(ai, "LNS-ISRC-010:PWRC-RepPS-02:VolRB") {
+    field(DESC, "Get Voltage")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_voltage RepPS-02")
+    field(LINR, "NO CONVERSION")
+    field(EGU,  "V")
+    field(HOPR, "0")
+    field(LOPR, "-3500")
+}
+
+record(ai, "LNS-ISRC-010:PWRC-RepPS-02:VolR") {
+    field(DESC, "Measure Voltage")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto measure_voltage RepPS-02")
+    field(PREC, "1")
+    field(LINR, "NO CONVERSION")
+    field(EGU,  "V")
+    field(HOPR, "0")
+    field(LOPR, "-3500")
+}
+
+## Current
+
+record(ao, "LNS-ISRC-010:PWRC-RepPS-02:CurS") {
+    field(DESC, "Set Current")
+    field(HOPR, "0")
+    field(LOPR, "-10")
+    field(PREC, "1")
+    field(EGU,  "mA")
+    field(FLNK, "LNS-ISRC-010:PWRC-RepPS-02:CurSCalc")
+}
+
+record(calcout, "LNS-ISRC-010:PWRC-RepPS-02:CurSCalc") {
+    field(DESC, "Set Current calc")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_current RepPS-02")
+    field(PREC, "0")
+    field(CALC, "A/(-1000)")
+    field(INPA, "LNS-ISRC-010:PWRC-RepPS-02:CurS")
+}
+
+record(ai, "LNS-ISRC-010:PWRC-RepPS-02:CurRB") {
+    field(DESC, "Get Current")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_current RepPS-02")
+    field(PREC, "0")
+    field(LINR, "NO CONVERSION")
+    field(EGU,  "mA")
+    field(HOPR, "0")
+    field(LOPR, "-10")
+}
+
+record(ai, "LNS-ISRC-010:PWRC-RepPS-02:CurRCalc") {
+    field(DESC, "Measure Current")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto measure_current RepPS-02")
+    field(LINR, "NO CONVERSION")
+    field(EGU,  "mA")
+    field(HOPR, "0")
+    field(LOPR, "-10")
+    field(FLNK, "LNS-ISRC-010:PWRC-RepPS-02:CurR")
+}
+
+record(calcout,"LNS-ISRC-010:PWRC-RepPS-02:CurR") {
+    field(INPA, "LNS-ISRC-010:PWRC-RepPS-02:CurRCalc")
+    field(CALC, "A*1000")
+    field(PREC, "3")
+    field(EGU,  "mA")
+}
+
+## Reset
+
+record(ao, "LNS-ISRC-010:PWRC-RepPS-02:Rst") {
+    field(DESC, "Reset")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto reset RepPS-02")
+}
+
+## Power Status
+
+record(bo, "LNS-ISRC-010:PWRC-RepPS-02:PwrS") {
+    field(DESC, "Power supply command")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_status RepPS-02")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "LNS-ISRC-010:PWRC-RepPS-02:PwrR") {
+    field(DESC, "Get power supply status")
+    field(DTYP, "stream")
+    field(SCAN, "1 second")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_status RepPS-02")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+## Settings
+
+record(ao, "LNS-ISRC-010:PWRC-RepPS-02:RampTypeS") {
+    field(DESC, "Set Ramp")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_ramp RepPS-02")
+    field(PREC, "3")
+    field(LINR, "NO CONVERSION")
+    field(HOPR, "4")
+    field(LOPR, "0")
+}
+
+record(ao, "LNS-ISRC-010:PWRC-RepPS-02:RampS") {
+    field(DESC, "Set ramp value")
+    field(DTYP, "stream")
+    field(OUT,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_ramp_value RepPS-02")
+    field(PREC, "3")
+    field(LINR, "NO CONVERSION")
+    field(HOPR, "0")
+    field(LOPR, "-0")
+}
+
+record(mbbiDirect, "LNS-ISRC-010:PWRC-RepPS-02:StatusR") {
+    field(DESC, "Get statusbytes")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_statusbytes RepPS-02")
+}
+
+record(bi, "LNS-ISRC-010:PWRC-RepPS-02:RampStatus") {
+    field(DESC, "Get ramp status")
+    field(SCAN, "1 second")
+    field(DTYP, "stream")
+    field(INP,  "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_ramp_status RepPS-02")
+    field(ZNAM, "EQUAL")
+    field(ONAM, "NOT EQUAL")
+}
