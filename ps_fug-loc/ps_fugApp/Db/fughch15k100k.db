@@ -7,7 +7,7 @@
 record(ao, "ISrc-010:ISS-HVPS:VolS") {
   field(DESC, "Set Voltage")
   field(DTYP, "stream")
-  field(OUT, "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_voltage HVPS")
+  field(OUT, "@fugps.proto set_voltage HVPS")
   field(PREC, "3")
   field(LINR, "LINEAR")
   field(EGU, "kV")
@@ -21,7 +21,7 @@ record(ai, "ISrc-010:ISS-HVPS:VolRB") {
   field(DESC, "Get Voltage")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(INP, "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_voltage HVPS")
+  field(INP, "@fugps.proto get_voltage HVPS")
   field(PREC, "3")
   field(LINR, "LINEAR")
   field(EGU, "kV")
@@ -34,7 +34,7 @@ record(ai, "ISrc-010:ISS-HVPS:VolR") {
   field(DESC, "Measure Voltage")
   field(SCAN, ".5 second")
   field(DTYP, "stream")
-  field(INP, "@ps_fug-loc/ps_fugApp/Db/fugps.proto measure_voltage HVPS")
+  field(INP, "@fugps.proto measure_voltage HVPS")
   field(PREC, "0")
   field(LINR, "LINEAR")
   field(EGU, "kV")
@@ -57,7 +57,7 @@ record(ao, "ISrc-010:ISS-HVPS:CurS") {
 record(calcout, "ISrc-010:ISS-HVPS:CurSCalc") {
   field(DESC, "Set Current calc")
   field(DTYP, "stream")
-  field(OUT, "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_current HVPS")
+  field(OUT, "@fugps.proto set_current HVPS")
   field(CALC, "A/(1000)")
   field(INPA, "ISrc-010:ISS-HVPS:CurS")
 }
@@ -66,7 +66,7 @@ record(ai, "ISrc-010:ISS-HVPS:CurRB") {
   field(DESC, "Get Current")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(INP, "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_current HVPS")
+  field(INP, "@fugps.proto get_current HVPS")
   field(PREC, "0")
   field(LINR, "NO CONVERSION")
   field(EGU, "mA")
@@ -78,7 +78,7 @@ record(ai, "ISrc-010:ISS-HVPS:CurRCalc") {
   field(DESC, "Measure Current")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(INP, "@ps_fug-loc/ps_fugApp/Db/fugps.proto measure_current HVPS")
+  field(INP, "@fugps.proto measure_current HVPS")
   field(LINR, "NO CONVERSION")
   field(EGU, "mA")
   field(HOPR, "150")
@@ -97,14 +97,14 @@ record(calcout, "ISrc-010:ISS-HVPS:CurR") {
 record(ao, "ISrc-010:ISS-HVPS:Rst") {
   field(DESC, "Reset")
   field(DTYP, "stream")
-  field(OUT, "@ps_fug-loc/ps_fugApp/Db/fugps.proto reset HVPS")
+  field(OUT, "@fugps.proto reset HVPS")
 }
 
 ## Power Status
 record(bo, "ISrc-010:ISS-HVPS:PwrS") {
   field(DESC, "Power supply command")
   field(DTYP, "stream")
-  field(OUT, "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_status HVPS")
+  field(OUT, "@fugps.proto set_status HVPS")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
   field(FLNK, "ISrc-010:ISS-HVPS:StatusCalc")
@@ -114,7 +114,7 @@ record(bi, "ISrc-010:ISS-HVPS:PwrR") {
   field(DESC, "Get power supply status")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP, "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_status HVPS")
+  field(INP, "@fugps.proto get_status HVPS")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
 }
@@ -124,7 +124,7 @@ record(mbbo, "ISrc-010:ISS-HVPS:RampTypeS") {
   field(DESC, "Set ramp type")
   field(DTYP, "stream")
   field(PINI, "YES")
-  field(OUT, "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_ramp HVPS")
+  field(OUT, "@fugps.proto set_ramp HVPS")
   field(ZRST, "Normal")
   field(ONST, "Ramp")
 }
@@ -132,7 +132,7 @@ record(mbbo, "ISrc-010:ISS-HVPS:RampTypeS") {
 record(ao, "ISrc-010:ISS-HVPS:RampS") {
   field(DESC, "Set ramp value")
   field(DTYP, "stream")
-  field(OUT, "@ps_fug-loc/ps_fugApp/Db/fugps.proto set_ramp_value HVPS")
+  field(OUT, "@fugps.proto set_ramp_value HVPS")
   field(PREC, "1")
   field(PINI, "YES")
   field(LINR, "LINEAR")
@@ -146,7 +146,7 @@ record(bi, "ISrc-010:ISS-HVPS:RampStatus") {
   field(DESC, "Get ramp status")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(INP, "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_ramp_status HVPS")
+  field(INP, "@fugps.proto get_ramp_status HVPS")
   field(ZNAM, "EQUAL")
   field(ONAM, "NOT EQUAL")
 }
@@ -155,7 +155,7 @@ record(mbbiDirect, "ISrc-010:ISS-HVPS:StatusR") {
   field(DESC, "Get statusbytes")
   field(SCAN, ".5 second")
   field(DTYP, "stream")
-  field(INP, "@ps_fug-loc/ps_fugApp/Db/fugps.proto get_statusbytes HVPS")
+  field(INP, "@fugps.proto get_statusbytes HVPS")
   field(FLNK, "ISrc-010:ISS-HVPS:StatusCalc")
 }
 

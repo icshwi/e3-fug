@@ -1,9 +1,10 @@
 file fughcp353500.template
 {
     {
-        proto_file      = "ps_fug-loc/ps_fugApp/Db/fugps.proto",
-        secsub          = "LNS-ISRC-010",
-        disdevidx       = "PWRC-RepPS-01",
+        #proto_file      = "ps_fug-loc/ps_fugApp/Db/fugps.proto",
+        proto_file      = "fugps.proto",
+        secsub          = "ISrc-010",
+        disdevidx       = "PwrC-RepPS-01",
         connection_name = "RepPS-01"
         VMAX            = "0"
         VMIN            = "-3500"
@@ -14,9 +15,10 @@ file fughcp353500.template
         CUR_PREC        = "0"
     }
     {
-        proto_file      = "ps_fug-loc/ps_fugApp/Db/fugps.proto",
-        secsub          = "LNS-ISRC-010",
-        disdevidx       = "PWRC-RepPS-02",
+        #proto_file      = "ps_fug-loc/ps_fugApp/Db/fugps.proto",
+        proto_file      = "fugps.proto",
+        secsub          = "ISrc-010",
+        disdevidx       = "PwrC-RepPS-02",
         connection_name = "RepPS-02"
         VMAX            = "0"
         VMIN            = "-3500"
