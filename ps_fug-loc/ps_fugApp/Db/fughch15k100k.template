@@ -4,114 +4,99 @@
 
 
 ## Voltage
-record(ao, "${secsub}:${disdevidx}:VolS") {
+record(ao, "$(P)$(R)VolS") {
   field(DESC, "Set Voltage")
   field(DTYP, "stream")
   field(OUT, "@${proto_file} set_voltage ${connection_name}")
   field(PREC, "3")
   field(LINR, "LINEAR")
-  field(EGU, "${VUNIT}")
-  field(HOPR, "${VMAX}")
-  field(LOPR, "${VMIN}")
-  field(FLNK, "${secsub}:${disdevidx}:RampStatus")
   field(ASLO, "0.001")
+  field(EGU, "kV")
+  field(FLNK, "$(P)$(R)RampStatus")
 }
 
-record(ai, "${secsub}:${disdevidx}:VolRB") {
+record(ai, "$(P)$(R)VolRB") {
   field(DESC, "Get Voltage")
   field(SCAN, "1 second")
   field(DTYP, "stream")
   field(INP, "@${proto_file} get_voltage ${connection_name}")
   field(PREC, "3")
   field(LINR, "LINEAR")
-  field(EGU, "${VUNIT}")
-  field(HOPR, "${VMAX}")
-  field(LOPR, "${VMIN}")
   field(ASLO, "0.001")
+  field(EGU, "kV")
 }
 
-record(ai, "${secsub}:${disdevidx}:VolR") {
+record(ai, "$(P)$(R)VolR") {
   field(DESC, "Measure Voltage")
   field(SCAN, ".5 second")
   field(DTYP, "stream")
   field(INP, "@${proto_file} measure_voltage ${connection_name}")
-  field(PREC, "0")
+  field(PREC, "3")
   field(LINR, "LINEAR")
-  field(EGU, "${VUNIT}")
-  field(HOPR, "${VMAX}")
-  field(LOPR, "${VMIN}")
   field(ASLO, "0.001")
+  field(EGU, "kV")
 }
 
 ## Current
-record(ao, "${secsub}:${disdevidx}:CurS") {
-  field(DESC, "Set Current")
-  field(HOPR, "${IMAX}")
-  field(LOPR, "${IMIN}")
-  field(EGU, "${IUNIT}")
+record(ao, "$(P)$(R)CurlimS") {
+  field(DESC, "Set Current Limit")
+  field(EGU, "mA")
   field(PINI, "YES")
   field(PREC, "3")
-  field(FLNK, "${secsub}:${disdevidx}:CurSCalc")
+  field(FLNK, "$(P)$(R)CurlimSCalc")
 }
 
-record(calcout, "${secsub}:${disdevidx}:CurSCalc") {
+############## SHB: Can't we just use conversion in CurlimS instead of using calcout?! Same for CurRCalc
+record(calcout, "$(P)$(R)CurlimSCalc") {
   field(DESC, "Set Current calc")
   field(DTYP, "stream")
   field(OUT, "@${proto_file} set_current ${connection_name}")
   field(CALC, "A/(1000)")
-  field(INPA, "${secsub}:${disdevidx}:CurS")
+  field(INPA, "$(P)$(R)CurlimS")
 }
 
-record(ai, "${secsub}:${disdevidx}:CurRB") {
-  field(DESC, "Get Current")
+record(ai, "$(P)$(R)CurRB") {
+  field(DESC, "Get Actual Current")
   field(SCAN, "1 second")
   field(DTYP, "stream")
   field(INP, "@${proto_file} get_current ${connection_name}")
-  field(PREC, "0")
-  field(LINR, "NO CONVERSION")
-  field(EGU, "${IUNIT}")
-  field(HOPR, "${IMAX}")
-  field(LOPR, "${IMIN}")
+  field(EGU, "mA")
 }
 
-record(ai, "${secsub}:${disdevidx}:CurRCalc") {
+record(ai, "$(P)$(R)CurRCalc") {
   field(DESC, "Measure Current")
   field(SCAN, "1 second")
   field(DTYP, "stream")
   field(INP, "@${proto_file} measure_current ${connection_name}")
-  field(LINR, "NO CONVERSION")
-  field(EGU, "${IUNIT}")
-  field(HOPR, "${IMAX}")
-  field(LOPR, "${IMIN}")
-  field(FLNK, "${secsub}:${disdevidx}:CurR")
+  field(FLNK, "$(P)$(R)CurR")
 }
 
-record(calcout, "${secsub}:${disdevidx}:CurR") {
-  field(INPA, "${secsub}:${disdevidx}:CurRCalc")
+record(calcout, "$(P)$(R)CurR") {
+  field(INPA, "$(P)$(R)CurRCalc")
   field(CALC, "A*1000")
-  field(EGU, "${IUNIT}")
+  field(EGU, "mA")
   field(PREC, "3")
 }
 
 ## Reset
-record(ao, "${secsub}:${disdevidx}:Rst") {
-  field(DESC, "Reset")
+record(ao, "$(P)$(R)Rst") {
+  field(DESC, "Reset all parameters")
   field(DTYP, "stream")
   field(OUT, "@${proto_file} reset ${connection_name}")
 }
 
 ## Power Status
-record(bo, "${secsub}:${disdevidx}:PwrS") {
-  field(DESC, "Power supply command")
+record(bo, "$(P)$(R)PwrS") {
+  field(DESC, "Set PS ON/OFF")
   field(DTYP, "stream")
   field(OUT, "@${proto_file} set_status ${connection_name}")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "${secsub}:${disdevidx}:StatusCalc")
+  field(FLNK, "$(P)$(R)StatusCalc")
 }
 
-record(bi, "${secsub}:${disdevidx}:PwrR") {
-  field(DESC, "Get power supply status")
+record(bi, "$(P)$(R)PwrR") {
+  field(DESC, "Get PS ON/OFF status")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP, "@${proto_file} get_status ${connection_name}")
@@ -120,7 +105,7 @@ record(bi, "${secsub}:${disdevidx}:PwrR") {
 }
 
 ## Settings
-record(mbbo, "${secsub}:${disdevidx}:RampTypeS") {
+record(mbbo, "$(P)$(R)RampTypeS") {
   field(DESC, "Set ramp type")
   field(DTYP, "stream")
   field(PINI, "YES")
@@ -129,8 +114,8 @@ record(mbbo, "${secsub}:${disdevidx}:RampTypeS") {
   field(ONST, "Ramp")
 }
 
-record(ao, "${secsub}:${disdevidx}:RampS") {
-  field(DESC, "Set ramp value")
+record(ao, "$(P)$(R)RampS") {
+  field(DESC, "Set ramp speed")
   field(DTYP, "stream")
   field(OUT, "@${proto_file} set_ramp_value ${connection_name}")
   field(PREC, "1")
@@ -142,7 +127,7 @@ record(ao, "${secsub}:${disdevidx}:RampS") {
   field(ASLO, "0.001")
 }
 
-record(bi, "${secsub}:${disdevidx}:RampStatus") {
+record(bi, "$(P)$(R)RampStatus") {
   field(DESC, "Get ramp status")
   field(SCAN, "1 second")
   field(DTYP, "stream")
@@ -151,64 +136,64 @@ record(bi, "${secsub}:${disdevidx}:RampStatus") {
   field(ONAM, "NOT EQUAL")
 }
 
-record(mbbiDirect, "${secsub}:${disdevidx}:StatusR") {
-  field(DESC, "Get statusbytes")
+record(mbbiDirect, "$(P)$(R)StatusR") {
+  field(DESC, "Get status byte")
   field(SCAN, ".5 second")
   field(DTYP, "stream")
   field(INP, "@${proto_file} get_statusbytes ${connection_name}")
-  field(FLNK, "${secsub}:${disdevidx}:StatusCalc")
+  field(FLNK, "$(P)$(R)StatusCalc")
 }
 
-record(calcout, "${secsub}:${disdevidx}:StatusCalc") {
+record(calcout, "$(P)$(R)StatusCalc") {
   field(SCAN, "Passive")
   field(CALC, "A+B")
-  field(INPA, "${secsub}:${disdevidx}:StatusR.B5 PP")
-  field(INPB, "${secsub}:${disdevidx}:PwrS PP")
-  field(OUT, "${secsub}:${disdevidx}:VolS PP")
+  field(INPA, "$(P)$(R)StatusR.B5 PP")
+  field(INPB, "$(P)$(R)PwrS PP")
+  field(OUT, "$(P)$(R)VolS PP")
   field(OOPT, "On Change")
   field(DOPT, "Use OCAL")
 }
 
 #! Further lines contain data used by VisualDCT
 #! View(0,0,1.0)
-#! Record("${secsub}:${disdevidx}:VolS",620,345,0,0,"${secsub}:${disdevidx}:VolS")
-#! Field("${secsub}:${disdevidx}:VolS.VAL",16777215,1,"${secsub}:${disdevidx}:VolS.VAL")
-#! Field("${secsub}:${disdevidx}:VolS.FLNK",16777215,1,"${secsub}:${disdevidx}:VolS.FLNK")
-#! Link("${secsub}:${disdevidx}:VolS.FLNK","${secsub}:${disdevidx}:RampStatus")
-#! Record("${secsub}:${disdevidx}:VolRB",60,65,0,0,"${secsub}:${disdevidx}:VolRB")
-#! Record("${secsub}:${disdevidx}:VolR",320,65,0,0,"${secsub}:${disdevidx}:VolR")
-#! Record("${secsub}:${disdevidx}:CurS",740,26,0,0,"${secsub}:${disdevidx}:CurS")
-#! Field("${secsub}:${disdevidx}:CurS.FLNK",16777215,1,"${secsub}:${disdevidx}:CurS.FLNK")
-#! Link("${secsub}:${disdevidx}:CurS.FLNK","${secsub}:${disdevidx}:CurSCalc")
-#! Field("${secsub}:${disdevidx}:CurS.VAL",16777215,0,"${secsub}:${disdevidx}:CurS.VAL")
-#! Record("${secsub}:${disdevidx}:CurSCalc",1000,234,0,0,"${secsub}:${disdevidx}:CurSCalc")
-#! Field("${secsub}:${disdevidx}:CurSCalc.INPA",16777215,0,"${secsub}:${disdevidx}:CurSCalc.INPA")
-#! Link("${secsub}:${disdevidx}:CurSCalc.INPA","${secsub}:${disdevidx}:CurS.VAL")
-#! Record("${secsub}:${disdevidx}:CurRB",1220,19,0,0,"${secsub}:${disdevidx}:CurRB")
-#! Record("${secsub}:${disdevidx}:CurRCalc",1460,19,0,0,"${secsub}:${disdevidx}:CurRCalc")
-#! Field("${secsub}:${disdevidx}:CurRCalc.FLNK",16777215,1,"${secsub}:${disdevidx}:CurRCalc.FLNK")
-#! Link("${secsub}:${disdevidx}:CurRCalc.FLNK","${secsub}:${disdevidx}:CurR")
-#! Field("${secsub}:${disdevidx}:CurRCalc.VAL",16777215,1,"${secsub}:${disdevidx}:CurRCalc.VAL")
-#! Record("${secsub}:${disdevidx}:CurR",1740,228,0,0,"${secsub}:${disdevidx}:CurR")
-#! Field("${secsub}:${disdevidx}:CurR.INPA",16777215,0,"${secsub}:${disdevidx}:CurR.INPA")
-#! Link("${secsub}:${disdevidx}:CurR.INPA","${secsub}:${disdevidx}:CurRCalc.VAL")
-#! Record("${secsub}:${disdevidx}:Rst",1740,22,0,0,"${secsub}:${disdevidx}:Rst")
-#! Record("${secsub}:${disdevidx}:PwrS",60,360,0,0,"${secsub}:${disdevidx}:PwrS")
-#! Field("${secsub}:${disdevidx}:PwrS.VAL",16777215,1,"${secsub}:${disdevidx}:PwrS.VAL")
-#! Field("${secsub}:${disdevidx}:PwrS.FLNK",16777215,1,"${secsub}:${disdevidx}:PwrS.FLNK")
-#! Link("${secsub}:${disdevidx}:PwrS.FLNK","${secsub}:${disdevidx}:StatusCalc")
-#! Record("${secsub}:${disdevidx}:PwrR",2420,20,0,0,"${secsub}:${disdevidx}:PwrR")
-#! Record("${secsub}:${disdevidx}:RampTypeS",2640,20,0,0,"${secsub}:${disdevidx}:RampTypeS")
-#! Record("${secsub}:${disdevidx}:RampS",2900,-15,0,0,"${secsub}:${disdevidx}:RampS")
-#! Record("${secsub}:${disdevidx}:RampStatus",920,500,0,0,"${secsub}:${disdevidx}:RampStatus")
-#! Record("${secsub}:${disdevidx}:StatusR",60,554,0,0,"${secsub}:${disdevidx}:StatusR")
-#! Field("${secsub}:${disdevidx}:StatusR.FLNK",16777215,1,"${secsub}:${disdevidx}:StatusR.FLNK")
-#! Link("${secsub}:${disdevidx}:StatusR.FLNK","${secsub}:${disdevidx}:StatusCalc")
-#! Field("${secsub}:${disdevidx}:StatusR.B5",16777215,1,"${secsub}:${disdevidx}:StatusR.B5")
-#! Record("${secsub}:${disdevidx}:StatusCalc",360,346,0,0,"${secsub}:${disdevidx}:StatusCalc")
-#! Field("${secsub}:${disdevidx}:StatusCalc.INPB",16777215,0,"${secsub}:${disdevidx}:StatusCalc.INPB")
-#! Link("${secsub}:${disdevidx}:StatusCalc.INPB","${secsub}:${disdevidx}:PwrS.VAL")
-#! Field("${secsub}:${disdevidx}:StatusCalc.INPA",16777215,0,"${secsub}:${disdevidx}:StatusCalc.INPA")
-#! Link("${secsub}:${disdevidx}:StatusCalc.INPA","${secsub}:${disdevidx}:StatusR.B5")
-#! Field("${secsub}:${disdevidx}:StatusCalc.OUT",16777215,1,"${secsub}:${disdevidx}:StatusCalc.OUT")
-#! Link("${secsub}:${disdevidx}:StatusCalc.OUT","${secsub}:${disdevidx}:VolS.VAL")
+#! Record("$(P)$(R)VolS",1100,572,0,0,"$(P)$(R)VolS")
+#! Field("$(P)$(R)VolS.FLNK",16777215,0,"$(P)$(R)VolS.FLNK")
+#! Link("$(P)$(R)VolS.FLNK","$(P)$(R)RampStatus")
+#! Field("$(P)$(R)VolS.VAL",16777215,1,"$(P)$(R)VolS.VAL")
+#! Record("$(P)$(R)VolRB",40,12,0,0,"$(P)$(R)VolRB")
+#! Record("$(P)$(R)VolR",220,12,0,0,"$(P)$(R)VolR")
+#! Record("$(P)$(R)CurlimS",40,214,0,0,"$(P)$(R)CurlimS")
+#! Field("$(P)$(R)CurlimS.FLNK",16777215,1,"$(P)$(R)CurlimS.FLNK")
+#! Link("$(P)$(R)CurlimS.FLNK","$(P)$(R)CurlimSCalc")
+#! Field("$(P)$(R)CurlimS.VAL",16777215,0,"$(P)$(R)CurlimS.VAL")
+#! Record("$(P)$(R)CurlimSCalc",300,234,0,0,"$(P)$(R)CurlimSCalc")
+#! Field("$(P)$(R)CurlimSCalc.INPA",16777215,0,"$(P)$(R)CurlimSCalc.INPA")
+#! Link("$(P)$(R)CurlimSCalc.INPA","$(P)$(R)CurlimS.VAL")
+#! Record("$(P)$(R)CurRB",500,254,0,0,"$(P)$(R)CurRB")
+#! Record("$(P)$(R)CurRCalc",680,254,0,0,"$(P)$(R)CurRCalc")
+#! Field("$(P)$(R)CurRCalc.FLNK",16777215,1,"$(P)$(R)CurRCalc.FLNK")
+#! Link("$(P)$(R)CurRCalc.FLNK","$(P)$(R)CurR")
+#! Field("$(P)$(R)CurRCalc.VAL",16777215,1,"$(P)$(R)CurRCalc.VAL")
+#! Record("$(P)$(R)CurR",1040,288,0,0,"$(P)$(R)CurR")
+#! Field("$(P)$(R)CurR.INPA",16777215,0,"$(P)$(R)CurR.INPA")
+#! Link("$(P)$(R)CurR.INPA","$(P)$(R)CurRCalc.VAL")
+#! Record("$(P)$(R)Rst",20,422,0,0,"$(P)$(R)Rst")
+#! Record("$(P)$(R)PwrS",1320,820,0,0,"$(P)$(R)PwrS")
+#! Field("$(P)$(R)PwrS.FLNK",16777215,1,"$(P)$(R)PwrS.FLNK")
+#! Link("$(P)$(R)PwrS.FLNK","$(P)$(R)StatusCalc")
+#! Field("$(P)$(R)PwrS.VAL",16777215,1,"$(P)$(R)PwrS.VAL")
+#! Record("$(P)$(R)PwrR",20,780,0,0,"$(P)$(R)PwrR")
+#! Record("$(P)$(R)RampTypeS",200,560,0,0,"$(P)$(R)RampTypeS")
+#! Record("$(P)$(R)RampS",20,545,0,0,"$(P)$(R)RampS")
+#! Record("$(P)$(R)RampStatus",840,680,0,1,"$(P)$(R)RampStatus")
+#! Record("$(P)$(R)StatusR",1320,514,0,0,"$(P)$(R)StatusR")
+#! Field("$(P)$(R)StatusR.FLNK",16777215,1,"$(P)$(R)StatusR.FLNK")
+#! Link("$(P)$(R)StatusR.FLNK","$(P)$(R)StatusCalc")
+#! Field("$(P)$(R)StatusR.B5",16777215,1,"$(P)$(R)StatusR.B5")
+#! Record("$(P)$(R)StatusCalc",1740,566,0,0,"$(P)$(R)StatusCalc")
+#! Field("$(P)$(R)StatusCalc.INPA",16777215,0,"$(P)$(R)StatusCalc.INPA")
+#! Link("$(P)$(R)StatusCalc.INPA","$(P)$(R)StatusR.B5")
+#! Field("$(P)$(R)StatusCalc.INPB",16777215,0,"$(P)$(R)StatusCalc.INPB")
+#! Link("$(P)$(R)StatusCalc.INPB","$(P)$(R)PwrS.VAL")
+#! Field("$(P)$(R)StatusCalc.OUT",16777215,0,"$(P)$(R)StatusCalc.OUT")
+#! Link("$(P)$(R)StatusCalc.OUT","$(P)$(R)VolS.VAL")
