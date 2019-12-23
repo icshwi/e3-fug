@@ -95,11 +95,21 @@ record(bo, "$(P)$(R)PwrS") {
   field(FLNK, "$(P)$(R)StatusCalc")
 }
 
-record(bi, "$(P)$(R)PwrR") {
+record(bi, "$(P)$(R)PwrRB") {
   field(DESC, "Get PS ON/OFF status")
   field(DTYP, "stream")
   field(SCAN, "1 second")
   field(INP, "@${proto_file} get_status ${connection_name}")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(FLNK, "$(P)$(R)StatusCalc")
+}
+
+record(bi, "$(P)$(R)PwrR") {
+  field(DESC, "Query Actual PS ON/OFF status")
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(INP, "@${proto_file} query_on_status ${connection_name}")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
 }
@@ -138,20 +148,43 @@ record(bi, "$(P)$(R)RampStatus") {
 
 record(mbbiDirect, "$(P)$(R)StatusR") {
   field(DESC, "Get status byte")
-  field(SCAN, ".5 second")
+  field(SCAN, "5 second")
   field(DTYP, "stream")
   field(INP, "@${proto_file} get_statusbytes ${connection_name}")
-  field(FLNK, "$(P)$(R)StatusCalc")
 }
 
 record(calcout, "$(P)$(R)StatusCalc") {
   field(SCAN, "Passive")
   field(CALC, "A+B")
-  field(INPA, "$(P)$(R)StatusR.B5 PP")
+  field(INPA, "$(P)$(R)PwrRB PP")
   field(INPB, "$(P)$(R)PwrS PP")
   field(OUT, "$(P)$(R)VolS PP")
   field(OOPT, "On Change")
   field(DOPT, "Use OCAL")
+}
+
+record(bo, "$(P)$(R)PolS") {
+  field(DESC, "Set Polarity")
+  field(DTYP, "stream")
+  field(OUT, "@${proto_file} set_polarity ${connection_name}")
+  field(ONAM, "Negative")
+  field(ZNAM, "Positive")
+}
+
+record(bi, "$(P)$(R)PolRB") {
+  field(DESC, "Get Polarity")
+  field(DTYP, "stream")
+  field(INP, "@${proto_file} query_polarity ${connection_name}")
+  field(ONAM, "Negative")
+  field(ZNAM, "Positive")
+}
+
+record(bi, "$(P)$(R)RemoteCtrl") {
+  field(DESC, "Get Remote Control Status")
+  field(DTYP, "stream")
+  field(INP, "@${proto_file} query_remote_ctrl ${connection_name}")
+  field(ONAM, "Remote")
+  field(ZNAM, "Local")
 }
 
 #! Further lines contain data used by VisualDCT
@@ -182,18 +215,22 @@ record(calcout, "$(P)$(R)StatusCalc") {
 #! Field("$(P)$(R)PwrS.FLNK",16777215,1,"$(P)$(R)PwrS.FLNK")
 #! Link("$(P)$(R)PwrS.FLNK","$(P)$(R)StatusCalc")
 #! Field("$(P)$(R)PwrS.VAL",16777215,1,"$(P)$(R)PwrS.VAL")
+#! Record("$(P)$(R)PwrRB",1340,486,0,0,"$(P)$(R)PwrRB")
+#! Field("$(P)$(R)PwrRB.FLNK",16777215,1,"$(P)$(R)PwrRB.FLNK")
+#! Link("$(P)$(R)PwrRB.FLNK","$(P)$(R)StatusCalc")
+#! Field("$(P)$(R)PwrRB.VAL",16777215,1,"$(P)$(R)PwrRB.VAL")
 #! Record("$(P)$(R)PwrR",20,780,0,0,"$(P)$(R)PwrR")
 #! Record("$(P)$(R)RampTypeS",200,560,0,0,"$(P)$(R)RampTypeS")
 #! Record("$(P)$(R)RampS",20,545,0,0,"$(P)$(R)RampS")
 #! Record("$(P)$(R)RampStatus",840,680,0,1,"$(P)$(R)RampStatus")
-#! Record("$(P)$(R)StatusR",1320,514,0,0,"$(P)$(R)StatusR")
-#! Field("$(P)$(R)StatusR.FLNK",16777215,1,"$(P)$(R)StatusR.FLNK")
-#! Link("$(P)$(R)StatusR.FLNK","$(P)$(R)StatusCalc")
-#! Field("$(P)$(R)StatusR.B5",16777215,1,"$(P)$(R)StatusR.B5")
+#! Record("$(P)$(R)StatusR",200,408,0,0,"$(P)$(R)StatusR")
 #! Record("$(P)$(R)StatusCalc",1740,566,0,0,"$(P)$(R)StatusCalc")
 #! Field("$(P)$(R)StatusCalc.INPA",16777215,0,"$(P)$(R)StatusCalc.INPA")
-#! Link("$(P)$(R)StatusCalc.INPA","$(P)$(R)StatusR.B5")
+#! Link("$(P)$(R)StatusCalc.INPA","$(P)$(R)PwrRB.VAL")
 #! Field("$(P)$(R)StatusCalc.INPB",16777215,0,"$(P)$(R)StatusCalc.INPB")
 #! Link("$(P)$(R)StatusCalc.INPB","$(P)$(R)PwrS.VAL")
 #! Field("$(P)$(R)StatusCalc.OUT",16777215,0,"$(P)$(R)StatusCalc.OUT")
 #! Link("$(P)$(R)StatusCalc.OUT","$(P)$(R)VolS.VAL")
+#! Record("$(P)$(R)PolS",20,954,0,0,"$(P)$(R)PolS")
+#! Record("$(P)$(R)PolRB",220,954,0,0,"$(P)$(R)PolRB")
+#! Record("$(P)$(R)RemoteCtrl",380,414,0,0,"$(P)$(R)RemoteCtrl")

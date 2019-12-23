@@ -7,7 +7,7 @@ PollPeriod    = 100;
 ReplyTimeout  = 1000;
 ExtraInput    = Ignore;
 
-## Commands wrote from 2014-04-02 Probus V documentation (V2.22)
+## Commands wrote from Probus V documentation (V2.22)
 
 ###
 # Reset
@@ -30,9 +30,9 @@ set_status {
     @init { get_status };
 }
 
-set_polarity{
-    out ">BX %d";
-    in "E0";
+query_on_status{
+    out ">DON?"
+    in "DON:%d"
 }
 
 ###
@@ -110,4 +110,19 @@ set_ramp_value {
 get_statusbytes {
     out ">KS?";
     in "KS:%d"
+}
+
+query_polarity {
+    out ">DX?"
+    in "DX:%d"
+}
+
+set_polarity{
+    out ">BX %d";
+    in "E0";
+}
+
+query_remote_ctrl {
+    out ">DSD?"
+    in "DSD:%d"
 }
