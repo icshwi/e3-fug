@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>FuG PS</name>
+  <width>835</width>
+  <height>500</height>
+  <background_color>
+    <color red="220" green="220" blue="220">
+    </color>
+  </background_color>
+  <actions>
+  </actions>
+  <widget type="rectangle" version="2.0.0">
+    <name>Rectangle Template</name>
+    <width>835</width>
+    <height>50</height>
+    <line_width>0</line_width>
+    <line_color>
+      <color name="IO Line" red="0" green="32" blue="92">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="PRIMARY-HEADER-BACKGROUND" red="151" green="188" blue="202">
+      </color>
+    </background_color>
+    <actions>
+    </actions>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label Template</name>
+    <text>FuG Power Supply Engineering Panel</text>
+    <x>20</x>
+    <width>569</width>
+    <height>48</height>
+    <font>
+      <font family="Source Sans Pro" style="BOLD_ITALIC" size="36.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="HEADER-TEXT" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="IO Background" red="255" green="255" blue="205">
+      </color>
+    </background_color>
+    <vertical_alignment>1</vertical_alignment>
+    <auto_size>true</auto_size>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color name="IO Border" red="215" green="215" blue="215">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="group" version="2.0.0">
+    <name>H1</name>
+    <x>10</x>
+    <y>60</y>
+    <width>815</width>
+    <height>430</height>
+    <style>3</style>
+    <background_color>
+      <color name="BACKGROUND" red="220" green="225" blue="221">
+      </color>
+    </background_color>
+    <widget type="rectangle" version="2.0.0">
+      <name>BGGrey03-titlebar_1</name>
+      <width>815</width>
+      <height>430</height>
+      <line_width>0</line_width>
+      <background_color>
+        <color name="GROUP-BORDER" red="150" green="155" blue="151">
+        </color>
+      </background_color>
+      <corner_width>10</corner_width>
+      <corner_height>10</corner_height>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>BGGrey03-title_1</name>
+      <text>FuG Power Supply</text>
+      <x>14</x>
+      <width>486</width>
+      <height>50</height>
+      <font>
+        <font family="Source Sans Pro" style="BOLD_ITALIC" size="24.0">
+        </font>
+      </font>
+      <foreground_color>
+        <color name="TEXT-LIGHT" red="230" green="230" blue="230">
+        </color>
+      </foreground_color>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="led" version="2.0.0">
+      <name>LED Template_2</name>
+      <pv_name>$(P)$(R)StatusR.SEVR</pv_name>
+      <x>700</x>
+      <y>10</y>
+      <width>101</width>
+      <height>30</height>
+      <off_label>CONNECTION</off_label>
+      <off_color>
+        <color name="LED-GREEN-ON" red="70" green="255" blue="70">
+        </color>
+      </off_color>
+      <on_label>CONNECTION</on_label>
+      <on_color>
+        <color name="LED-RED-ON" red="255" green="60" blue="46">
+        </color>
+      </on_color>
+      <font>
+        <font family="Source Sans Pro" style="REGULAR" size="12.0">
+        </font>
+      </font>
+      <square>true</square>
+      <actions>
+      </actions>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="group" version="2.0.0">
+      <name>H2</name>
+      <x>10</x>
+      <y>50</y>
+      <width>790</width>
+      <height>360</height>
+      <style>3</style>
+      <transparent>true</transparent>
+      <widget type="rectangle" version="2.0.0">
+        <name>BGGrey03-background_1</name>
+        <width>790</width>
+        <height>360</height>
+        <line_width>0</line_width>
+        <background_color>
+          <color name="GROUP-BACKGROUND" red="200" green="205" blue="201">
+          </color>
+        </background_color>
+        <corner_width>5</corner_width>
+        <corner_height>5</corner_height>
+      </widget>
+      <widget type="group" version="2.0.0">
+        <name>H3_1</name>
+        <x>10</x>
+        <y>10</y>
+        <width>310</width>
+        <height>140</height>
+        <style>3</style>
+        <widget type="label" version="2.0.0">
+          <name>LGGrey02-title_1</name>
+          <text>Voltage</text>
+          <width>310</width>
+          <height>35</height>
+          <font>
+            <font family="Source Sans Pro" style="BOLD_ITALIC" size="18.0">
+            </font>
+          </font>
+          <foreground_color>
+            <color name="GROUP-TEXT" red="25" green="25" blue="25">
+            </color>
+          </foreground_color>
+          <background_color>
+            <color name="RED-BORDER" red="150" green="8" blue="16">
+            </color>
+          </background_color>
+          <horizontal_alignment>1</horizontal_alignment>
+          <vertical_alignment>1</vertical_alignment>
+          <wrap_words>false</wrap_words>
+        </widget>
+        <widget type="label" version="2.0.0">
+          <name>X Actual Position Caption_12</name>
+          <class>CAPTION</class>
+          <text>Measured:</text>
+          <x>10</x>
+          <y>80</y>
+          <width>90</width>
+          <foreground_color use_class="true">
+            <color name="Text" red="25" green="25" blue="25">
+            </color>
+          </foreground_color>
+          <horizontal_alignment use_class="true">2</horizontal_alignment>
+          <vertical_alignment use_class="true">1</vertical_alignment>
+        </widget>
+      </widget>
+      <widget type="group" version="2.0.0">
+        <name>Repeler 1 Current_1</name>
+        <x>330</x>
+        <y>10</y>
+        <width>310</width>
+        <height>140</height>
+        <style>3</style>
+        <widget type="label" version="2.0.0">
+          <name>LGGrey02-title_5</name>
+          <text>Current</text>
+          <width>310</width>
+          <height>35</height>
+          <font>
+            <font family="Source Sans Pro" style="BOLD_ITALIC" size="18.0">
+            </font>
+          </font>
+          <foreground_color>
+            <color name="GROUP-TEXT" red="25" green="25" blue="25">
+            </color>
+          </foreground_color>
+          <background_color>
+            <color name="RED-BORDER" red="150" green="8" blue="16">
+            </color>
+          </background_color>
+          <horizontal_alignment>1</horizontal_alignment>
+          <vertical_alignment>1</vertical_alignment>
+          <wrap_words>false</wrap_words>
+        </widget>
+        <widget type="label" version="2.0.0">
+          <name>X Actual Position Caption_10</name>
+          <class>CAPTION</class>
+          <text>Measured:</text>
+          <x>10</x>
+          <y>80</y>
+          <width>90</width>
+          <foreground_color use_class="true">
+            <color name="Text" red="25" green="25" blue="25">
+            </color>
+          </foreground_color>
+          <horizontal_alignment use_class="true">2</horizontal_alignment>
+          <vertical_alignment use_class="true">1</vertical_alignment>
+        </widget>
+        <widget type="textupdate" version="2.0.0">
+          <name>Text Update Template_14</name>
+          <pv_name>$(P)$(R)CurR</pv_name>
+          <x>108</x>
+          <y>80</y>
+          <precision>1</precision>
+          <actions>
+          </actions>
+        </widget>
+        <widget type="spinner" version="2.0.0">
+          <name>Spinner Template_13</name>
+          <pv_name>$(P)$(R)CurS</pv_name>
+          <x>108</x>
+          <y>50</y>
+          <format>0</format>
+          <precision>1</precision>
+          <actions>
+          </actions>
+          <maximum>150.0</maximum>
+        </widget>
+        <widget type="label" version="2.0.0">
+          <name>X Set Position Caption_8</name>
+          <class>CAPTION</class>
+          <text>Limit:</text>
+          <x>10</x>
+          <y>50</y>
+          <width>90</width>
+          <foreground_color use_class="true">
+            <color name="Text" red="25" green="25" blue="25">
+            </color>
+          </foreground_color>
+          <horizontal_alignment use_class="true">2</horizontal_alignment>
+          <vertical_alignment use_class="true">1</vertical_alignment>
+        </widget>
+      </widget>
+      <widget type="group" version="2.0.0">
+        <name>Repeler 1 Voltage_2</name>
+        <x>10</x>
+        <y>160</y>
+        <width>310</width>
+        <height>190</height>
+        <style>3</style>
+        <widget type="label" version="2.0.0">
+          <name>LGGrey02-title_4</name>
+          <text>Ramp</text>
+          <width>310</width>
+          <height>35</height>
+          <font>
+            <font family="Source Sans Pro" style="BOLD_ITALIC" size="18.0">
+            </font>
+          </font>
+          <foreground_color>
+            <color name="GROUP-TEXT" red="25" green="25" blue="25">
+            </color>
+          </foreground_color>
+          <background_color>
+            <color name="RED-BORDER" red="150" green="8" blue="16">
+            </color>
+          </background_color>
+          <horizontal_alignment>1</horizontal_alignment>
+          <vertical_alignment>1</vertical_alignment>
+          <wrap_words>false</wrap_words>
+        </widget>
+        <widget type="label" version="2.0.0">
+          <name>X Mode Caption_9</name>
+          <class>CAPTION</class>
+          <text>Mode:</text>
+          <x>10</x>
+          <y>50</y>
+          <width>90</width>
+          <foreground_color use_class="true">
+            <color name="Text" red="25" green="25" blue="25">
+            </color>
+          </foreground_color>
+          <horizontal_alignment use_class="true">2</horizontal_alignment>
+          <vertical_alignment use_class="true">1</vertical_alignment>
+        </widget>
+        <widget type="radio" version="2.0.0">
+          <name>Choice Button_3</name>
+          <pv_name>$(P)$(R)RampTypeS</pv_name>
+          <x>108</x>
+          <y>50</y>
+          <width>110</width>
+          <height>56</height>
+          <foreground_color>
+            <color red="0" green="0" blue="0" alpha="254">
+            </color>
+          </foreground_color>
+          <horizontal>false</horizontal>
+          <actions>
+          </actions>
+          <items>
+            <item>Immediate</item>
+            <item>Ramp</item>
+          </items>
+          <items_from_pv>false</items_from_pv>
+        </widget>
+        <widget type="textupdate" version="2.0.0">
+          <name>Text Update Template_13</name>
+          <pv_name>$(P)$(R)RampTypeRB</pv_name>
+          <x>220</x>
+          <y>50</y>
+          <width>80</width>
+          <format>6</format>
+          <precision>3</precision>
+          <show_units>false</show_units>
+          <actions>
+          </actions>
+        </widget>
+        <widget type="textupdate" version="2.0.0">
+          <name>Text Update Template_12</name>
+          <pv_name>$(P)$(R)RampRB</pv_name>
+          <x>220</x>
+          <y>120</y>
+          <width>80</width>
+          <precision>3</precision>
+          <actions>
+          </actions>
+        </widget>
+      </widget>
+      <widget type="group" version="2.0.0">
+        <name>Repeler 1 Voltage_3</name>
+        <x>330</x>
+        <y>160</y>
+        <width>310</width>
+        <height>190</height>
+        <style>3</style>
+        <widget type="label" version="2.0.0">
+          <name>LGGrey02-title_6</name>
+          <text>Polarity</text>
+          <width>310</width>
+          <height>35</height>
+          <font>
+            <font family="Source Sans Pro" style="BOLD_ITALIC" size="18.0">
+            </font>
+          </font>
+          <foreground_color>
+            <color name="GROUP-TEXT" red="25" green="25" blue="25">
+            </color>
+          </foreground_color>
+          <background_color>
+            <color name="RED-BORDER" red="150" green="8" blue="16">
+            </color>
+          </background_color>
+          <horizontal_alignment>1</horizontal_alignment>
+          <vertical_alignment>1</vertical_alignment>
+          <wrap_words>false</wrap_words>
+        </widget>
+        <widget type="label" version="2.0.0">
+          <name>X Mode Caption_13</name>
+          <class>CAPTION</class>
+          <text>Polarity:</text>
+          <x>10</x>
+          <y>50</y>
+          <width>90</width>
+          <foreground_color use_class="true">
+            <color name="Text" red="25" green="25" blue="25">
+            </color>
+          </foreground_color>
+          <horizontal_alignment use_class="true">2</horizontal_alignment>
+          <vertical_alignment use_class="true">1</vertical_alignment>
+        </widget>
+        <widget type="radio" version="2.0.0">
+          <name>Choice Button_4</name>
+          <pv_name>$(P)$(R)PolS</pv_name>
+          <x>108</x>
+          <y>50</y>
+          <width>130</width>
+          <height>56</height>
+          <foreground_color>
+            <color red="0" green="0" blue="0" alpha="254">
+            </color>
+          </foreground_color>
+          <horizontal>false</horizontal>
+          <actions>
+          </actions>
+          <items>
+            <item>+ Positive</item>
+            <item>-  Negative</item>
+          </items>
+        </widget>
+        <widget type="textupdate" version="2.0.0">
+          <name>Text Update_3</name>
+          <pv_name>$(P)$(R)PolRB</pv_name>
+          <x>108</x>
+          <y>120</y>
+          <format>6</format>
+        </widget>
+      </widget>
+      <widget type="action_button" version="3.0.0">
+        <name>Action Button Template_3</name>
+        <actions>
+          <action type="write_pv">
+            <pv_name>$(P)$(R)Rst</pv_name>
+            <value>1</value>
+          </action>
+        </actions>
+        <pv_name>$(P)$(R)Rst</pv_name>
+        <text>Reset Parameters</text>
+        <x>650</x>
+        <y>280</y>
+        <width>130</width>
+        <tooltip></tooltip>
+      </widget>
+      <widget type="bool_button" version="2.0.0">
+        <name>Boolean Button Template_9</name>
+        <pv_name>$(P)$(R)PwrS</pv_name>
+        <x>650</x>
+        <y>318</y>
+        <off_label>OFF</off_label>
+        <off_color>
+          <color name="LED-GREEN-OFF" red="90" green="110" blue="90">
+          </color>
+        </off_color>
+        <on_label>ON</on_label>
+        <on_color>
+          <color name="LED-GREEN-ON" red="70" green="255" blue="70">
+          </color>
+        </on_color>
+        <actions>
+        </actions>
+        <border_alarm_sensitive>false</border_alarm_sensitive>
+      </widget>
+      <widget type="led" version="2.0.0">
+        <name>LED_4</name>
+        <pv_name>$(P)$(R)PwrR</pv_name>
+        <x>760</x>
+        <y>323</y>
+        <rules>
+          <rule name="Status" prop_id="line_color" out_exp="false">
+            <exp bool_exp="pv0==1">
+              <value>
+                <color name="ATTENTION" red="252" green="242" blue="17">
+                </color>
+              </value>
+            </exp>
+            <pv_name>$(P)$(R)StatusR.B5</pv_name>
+          </rule>
+        </rules>
+      </widget>
+      <widget type="group" version="2.0.0">
+        <name>Repeler 1 Status_2</name>
+        <x>650</x>
+        <y>10</y>
+        <width>130</width>
+        <height>250</height>
+        <style>3</style>
+        <widget type="label" version="2.0.0">
+          <name>LGGrey02-title_11</name>
+          <text>Status Bits</text>
+          <width>130</width>
+          <height>35</height>
+          <font>
+            <font family="Source Sans Pro" style="BOLD_ITALIC" size="18.0">
+            </font>
+          </font>
+          <foreground_color>
+            <color name="GROUP-TEXT" red="25" green="25" blue="25">
+            </color>
+          </foreground_color>
+          <background_color>
+            <color name="RED-BORDER" red="150" green="8" blue="16">
+            </color>
+          </background_color>
+          <horizontal_alignment>1</horizontal_alignment>
+          <vertical_alignment>1</vertical_alignment>
+          <wrap_words>false</wrap_words>
+        </widget>
+        <widget type="byte_monitor" version="2.0.0">
+          <name>Byte Monitor_5</name>
+          <pv_name>$(P)$(R)StatusR</pv_name>
+          <x>17</x>
+          <y>50</y>
+          <width>100</width>
+          <height>189</height>
+          <bitReverse>true</bitReverse>
+          <horizontal>false</horizontal>
+          <off_color>
+            <color name="LED-GREEN-OFF" red="90" green="110" blue="90">
+            </color>
+          </off_color>
+          <on_color>
+            <color name="LED-GREEN-ON" red="70" green="255" blue="70">
+            </color>
+          </on_color>
+          <labels>
+            <text>SEL-D</text>
+            <text>(not used)</text>
+            <text>Cal-Mode</text>
+            <text>X-Stat</text>
+            <text>3-Reg</text>
+            <text>PS-OFF</text>
+            <text>V-REG</text>
+            <text>I-REG</text>
+          </labels>
+          <actions>
+          </actions>
+        </widget>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>X Set Position Caption_6</name>
+        <class>CAPTION</class>
+        <text>SetPoint:</text>
+        <x>20</x>
+        <y>60</y>
+        <width>90</width>
+        <foreground_color use_class="true">
+          <color name="Text" red="25" green="25" blue="25">
+          </color>
+        </foreground_color>
+        <horizontal_alignment use_class="true">2</horizontal_alignment>
+        <vertical_alignment use_class="true">1</vertical_alignment>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>X Mode Caption_10</name>
+        <class>CAPTION</class>
+        <text>Speed:</text>
+        <x>10</x>
+        <y>280</y>
+        <foreground_color use_class="true">
+          <color name="Text" red="25" green="25" blue="25">
+          </color>
+        </foreground_color>
+        <horizontal_alignment use_class="true">2</horizontal_alignment>
+        <vertical_alignment use_class="true">1</vertical_alignment>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>X Mode Caption_11</name>
+        <class>CAPTION</class>
+        <text>Ramp Status:</text>
+        <x>10</x>
+        <y>310</y>
+        <foreground_color use_class="true">
+          <color name="Text" red="25" green="25" blue="25">
+          </color>
+        </foreground_color>
+        <horizontal_alignment use_class="true">2</horizontal_alignment>
+        <vertical_alignment use_class="true">1</vertical_alignment>
+      </widget>
+      <widget type="textupdate" version="2.0.0">
+        <name>Text Update Template_11</name>
+        <pv_name>$(P)$(R)VolR</pv_name>
+        <x>118</x>
+        <y>90</y>
+        <precision>3</precision>
+        <actions>
+        </actions>
+      </widget>
+      <widget type="spinner" version="2.0.0">
+        <name>Spinner Template_9</name>
+        <pv_name>$(P)$(R)VolS</pv_name>
+        <x>118</x>
+        <y>60</y>
+        <format>0</format>
+        <precision>3</precision>
+        <actions>
+        </actions>
+        <rules>
+          <rule name="RampStatus" prop_id="background_color" out_exp="false">
+            <exp bool_exp="pv0==0">
+              <value>
+                <color name="Write_Background" red="224" green="217" blue="202">
+                </color>
+              </value>
+            </exp>
+            <exp bool_exp="pv0==1">
+              <value>
+                <color name="WARNING" red="252" green="242" blue="17">
+                </color>
+              </value>
+            </exp>
+            <pv_name>$(P)$(R)RampStatus</pv_name>
+          </rule>
+        </rules>
+        <maximum>80.0</maximum>
+      </widget>
+      <widget type="textupdate" version="2.0.0">
+        <name>Text Update_2</name>
+        <pv_name>$(P)$(R)RampStatus</pv_name>
+        <x>118</x>
+        <y>310</y>
+        <format>6</format>
+      </widget>
+      <widget type="spinner" version="2.0.0">
+        <name>Spinner Template_12</name>
+        <pv_name>$(P)$(R)RampS</pv_name>
+        <x>118</x>
+        <y>280</y>
+        <format>0</format>
+        <precision>1</precision>
+        <actions>
+        </actions>
+        <maximum>1.0</maximum>
+        <increment>0.1</increment>
+      </widget>
+      <widget type="textupdate" version="2.0.0">
+        <name>Text Update Template_10</name>
+        <pv_name>$(P)$(R)VolRB</pv_name>
+        <x>230</x>
+        <y>60</y>
+        <width>80</width>
+        <precision>3</precision>
+        <actions>
+        </actions>
+      </widget>
+    </widget>
+  </widget>
+</display>
