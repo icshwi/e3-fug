@@ -13,4 +13,4 @@ core.*
 *_old/
 *PVs.list
 *-loc/*.Makefile
-ps_fug-loc/*.Makefile
+fug-loc/*.Makefile

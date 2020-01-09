@@ -1,10 +1,10 @@
 >>
 Script is used     : e3TemplateGenerator.bash
-Script Path        : /home/antonisimelio/Desktop/Workspace/e3-tools/e3TemplateGenerator
-Script Version     : 1.0.5
-Script Run Time    : 2019Oct14-1150-04CEST
-User               : antonisimelio
-e3-tools Hash      : 0541c1b
+Script Path        : /home/saeedhaghtalab/e3-tools/e3TemplateGenerator
+Script Version     : 1.0.8
+Script Run Time    : 2020Jan07-1130-41CET
+User               : saeedhaghtalab
+e3-tools Hash      : bf03d40
 >>
 >> git diff 
 
@@ -16,13 +16,13 @@ e3-tools Hash      : 0541c1b
 
 
 >>
->> Your sources are located in e3-ps_fug.
+>> Your sources are located in e3-fug.
 >> 
-EPICS_MODULE_NAME  : ps_fug
-E3_MODULE_SRC_PATH : ps_fug
+EPICS_MODULE_NAME  : fug
+E3_MODULE_SRC_PATH : fug
 E3_TARGET_URL      : https://github.com/icshwi
 >> 
-e3 module name     : e3-ps_fug
-e3 target url full : https://github.com/icshwi/e3-ps_fug.git
+e3 module name     : e3-fug
+e3 target url full : https://github.com/icshwi/e3-fug.git
 >> 
 e3 module is located in siteMods

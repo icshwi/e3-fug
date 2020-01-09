@@ -7,7 +7,7 @@
 record(ao, "$(P)$(R)VolS") {
   field(DESC, "Set Voltage")
   field(DTYP, "stream")
-  field(OUT, "@${proto_file} set_voltage ${connection_name}")
+  field(OUT, "@${proto_file} set_voltage ${Ch_name}")
   field(PREC, "3")
   field(LINR, "LINEAR")
   field(ASLO, "0.001")
@@ -19,7 +19,7 @@ record(ai, "$(P)$(R)VolRB") {
   field(DESC, "Get Voltage")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(INP, "@${proto_file} get_voltage ${connection_name}")
+  field(INP, "@${proto_file} get_voltage ${Ch_name}")
   field(PREC, "3")
   field(LINR, "LINEAR")
   field(ASLO, "0.001")
@@ -30,7 +30,7 @@ record(ai, "$(P)$(R)VolR") {
   field(DESC, "Measure Voltage")
   field(SCAN, ".5 second")
   field(DTYP, "stream")
-  field(INP, "@${proto_file} measure_voltage ${connection_name}")
+  field(INP, "@${proto_file} measure_voltage ${Ch_name}")
   field(PREC, "3")
   field(LINR, "LINEAR")
   field(ASLO, "0.001")
@@ -50,7 +50,7 @@ record(ao, "$(P)$(R)CurlimS") {
 record(calcout, "$(P)$(R)CurlimSCalc") {
   field(DESC, "Set Current calc")
   field(DTYP, "stream")
-  field(OUT, "@${proto_file} set_current ${connection_name}")
+  field(OUT, "@${proto_file} set_current ${Ch_name}")
   field(CALC, "A/(1000)")
   field(INPA, "$(P)$(R)CurlimS")
 }
@@ -59,7 +59,7 @@ record(ai, "$(P)$(R)CurRB") {
   field(DESC, "Get Actual Current")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(INP, "@${proto_file} get_current ${connection_name}")
+  field(INP, "@${proto_file} get_current ${Ch_name}")
   field(EGU, "mA")
 }
 
@@ -67,7 +67,7 @@ record(ai, "$(P)$(R)CurRCalc") {
   field(DESC, "Measure Current")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(INP, "@${proto_file} measure_current ${connection_name}")
+  field(INP, "@${proto_file} measure_current ${Ch_name}")
   field(FLNK, "$(P)$(R)CurR")
 }
 
@@ -82,14 +82,14 @@ record(calcout, "$(P)$(R)CurR") {
 record(ao, "$(P)$(R)Rst") {
   field(DESC, "Reset all parameters")
   field(DTYP, "stream")
-  field(OUT, "@${proto_file} reset ${connection_name}")
+  field(OUT, "@${proto_file} reset ${Ch_name}")
 }
 
 ## Power Status
 record(bo, "$(P)$(R)PwrS") {
   field(DESC, "Set PS ON/OFF")
   field(DTYP, "stream")
-  field(OUT, "@${proto_file} set_status ${connection_name}")
+  field(OUT, "@${proto_file} set_status ${Ch_name}")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)StatusCalc")
@@ -99,7 +99,7 @@ record(bi, "$(P)$(R)PwrRB") {
   field(DESC, "Get PS ON/OFF status")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP, "@${proto_file} get_status ${connection_name}")
+  field(INP, "@${proto_file} get_status ${Ch_name}")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)StatusCalc")
@@ -109,25 +109,36 @@ record(bi, "$(P)$(R)PwrR") {
   field(DESC, "Query Actual PS ON/OFF status")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(INP, "@${proto_file} query_on_status ${connection_name}")
+  field(INP, "@${proto_file} query_on_status ${Ch_name}")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
 }
 
 ## Settings
+
+## Ramp
+
 record(mbbo, "$(P)$(R)RampTypeS") {
   field(DESC, "Set ramp type")
   field(DTYP, "stream")
   field(PINI, "YES")
-  field(OUT, "@${proto_file} set_ramp ${connection_name}")
-  field(ZRST, "Normal")
+  field(OUT, "@${proto_file} set_ramp_mode ${Ch_name}")
+  field(ZRST, "Immediate")
+  field(ONST, "Ramp")
+}
+
+record(mbbi, "$(P)$(R)RampTypeRB") {
+  field(DESC, "Ramp type readback")
+  field(DTYP, "stream")
+  field(INP, "@${proto_file} set_ramp_mode ${Ch_name}")
+  field(ZRST, "Immediate")
   field(ONST, "Ramp")
 }
 
 record(ao, "$(P)$(R)RampS") {
   field(DESC, "Set ramp speed")
   field(DTYP, "stream")
-  field(OUT, "@${proto_file} set_ramp_value ${connection_name}")
+  field(OUT, "@${proto_file} set_ramp_value ${Ch_name}")
   field(PREC, "1")
   field(PINI, "YES")
   field(LINR, "LINEAR")
@@ -137,20 +148,32 @@ record(ao, "$(P)$(R)RampS") {
   field(ASLO, "0.001")
 }
 
+record(ai, "$(P)$(R)RampRB") {
+  field(DESC, "Get ramp speed")
+  field(SCAN, "1 second")
+  field(DTYP, "stream")
+  field(INP, "@${proto_file} get_ramp_value ${Ch_name}")
+  field(PREC, "1")
+  field(LINR, "LINEAR")
+  field(EGU, "kV/s")
+  field(ASLO, "0.001")
+}
+
 record(bi, "$(P)$(R)RampStatus") {
   field(DESC, "Get ramp status")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(INP, "@${proto_file} get_ramp_status ${connection_name}")
-  field(ZNAM, "EQUAL")
-  field(ONAM, "NOT EQUAL")
+  field(INP, "@${proto_file} get_ramp_status ${Ch_name}")
+  field(ZNAM, "Equal")
+  field(ONAM, "Ramping")
 }
 
+##
 record(mbbiDirect, "$(P)$(R)StatusR") {
   field(DESC, "Get status byte")
   field(SCAN, "5 second")
   field(DTYP, "stream")
-  field(INP, "@${proto_file} get_statusbytes ${connection_name}")
+  field(INP, "@${proto_file} get_statusbytes ${Ch_name}")
 }
 
 record(calcout, "$(P)$(R)StatusCalc") {
@@ -166,7 +189,7 @@ record(calcout, "$(P)$(R)StatusCalc") {
 record(bo, "$(P)$(R)PolS") {
   field(DESC, "Set Polarity")
   field(DTYP, "stream")
-  field(OUT, "@${proto_file} set_polarity ${connection_name}")
+  field(OUT, "@${proto_file} set_polarity ${Ch_name}")
   field(ONAM, "Negative")
   field(ZNAM, "Positive")
 }
@@ -174,7 +197,7 @@ record(bo, "$(P)$(R)PolS") {
 record(bi, "$(P)$(R)PolRB") {
   field(DESC, "Get Polarity")
   field(DTYP, "stream")
-  field(INP, "@${proto_file} query_polarity ${connection_name}")
+  field(INP, "@${proto_file} query_polarity ${Ch_name}")
   field(ONAM, "Negative")
   field(ZNAM, "Positive")
 }
@@ -182,7 +205,7 @@ record(bi, "$(P)$(R)PolRB") {
 record(bi, "$(P)$(R)RemoteCtrl") {
   field(DESC, "Get Remote Control Status")
   field(DTYP, "stream")
-  field(INP, "@${proto_file} query_remote_ctrl ${connection_name}")
+  field(INP, "@${proto_file} query_remote_ctrl ${Ch_name}")
   field(ONAM, "Remote")
   field(ZNAM, "Local")
 }

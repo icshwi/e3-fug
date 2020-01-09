@@ -80,16 +80,16 @@ measure_voltage {
 }
 
 ###
-# Other
+# Ramp
 ##
-get_serial_number {
-    out "*IDN?";
-    in  "%39c";
-}
-
-set_ramp {
+set_ramp_mode {
     out ">S0B %d";
     in "E0"
+}
+
+get_ramp_mode {
+    out ">S0B?";
+    in "S0B:%d%*4c"
 }
 
 get_ramp_status {
@@ -97,13 +97,27 @@ get_ramp_status {
     in "S0S:%d%*4c"
 }
 
-set_actual {
-    out ">S0A %f";
+set_ramp_value {
+    out ">S0R %f";
     in "E0"
 }
 
-set_ramp_value {
-    out ">S0R %f";
+get_ramp_value {
+    out ">S0R?";
+    in "S0R:%f"
+}
+
+###
+# Other
+##
+
+get_serial_number {
+    out "*IDN?";
+    in  "%39c";
+}
+
+set_actual {
+    out ">S0A %f";
     in "E0"
 }
 

@@ -1,5 +1,5 @@
 
-e3-ps_fug  
+e3-fug  
 ======
-ESS Site-specific EPICS module : ps_fug
+ESS Site-specific EPICS module : fug
 

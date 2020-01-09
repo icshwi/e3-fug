@@ -1,0 +1,7 @@
+#! Remember to "require stream" in upstream startup script!
+
+drvAsynIPPortConfigure($(Ch_name), "$(IP_addr):2101")
+
+epicsEnvSet(STREAM_PROTOCOL_PATH, "$(fug_DB)")
+
+dbLoadRecords("fug.template", "proto_file=fug.proto, Ch_name=$(Ch_name), P=$(P), R=$(R)")
