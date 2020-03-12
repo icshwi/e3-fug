@@ -1,5 +1,1 @@
-
-e3-fug  
-======
-ESS Site-specific EPICS module : fug
-
+This repo is moved to https://gitlab.esss.lu.se/icshwi/e3-fug
